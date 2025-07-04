@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import dayjs from 'dayjs';
+
 
 function TaskItem({ task = {}, onDelete, onUpdate, onToggleComplete }) {
     const [isEditing, setIsEditing] = useState(false);
@@ -79,9 +81,9 @@ function TaskItem({ task = {}, onDelete, onUpdate, onToggleComplete }) {
                     <p style={textStyle} onClick={() => onToggleComplete(task.id)}>
                         {task.details}
                     </p>
-                    <small>作成日時: {task.createdAt}</small>
+                    <small>作成日時: {dayjs(task.created_at).format('YYYY-MM-DD HH:mm:ss')}</small>
                     <br />
-                    <small>更新日時: {task.updatedAt}</small>
+                    <small>更新日時: {dayjs(task.updated_at).format('YYYY-MM-DD HH:mm:ss')}</small>
                     <br />
                     <button onClick={() => setIsEditing(true)} style={editButtonStyle}>
                         編集
